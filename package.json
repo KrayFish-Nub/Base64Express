@@ -1,0 +1,19 @@
+{
+  "name": "base64-encoder-decoder",
+  "version": "1.0.1",
+  "description": "A simple express api that can be used to encode/decode base64.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
