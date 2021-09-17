@@ -15,7 +15,7 @@ const limiter = rateLimit({
 
 
 // encoding through URI
-app.post('/encode/:input', limiter, (req, res) => {
+app.get('/encode/:input', limiter, (req, res) => {
     
 
     const { input } = req.params;
@@ -36,7 +36,7 @@ app.post('/encode/:input', limiter, (req, res) => {
 
 
 // decoding through URI
-app.post('/decode/:input', limiter, (req, res) => {
+app.get('/decode/:input', limiter, (req, res) => {
 
     const { input } = req.params;
 
