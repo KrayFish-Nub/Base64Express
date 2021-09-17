@@ -1,15 +1,21 @@
-//
-
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
+const rateLimit = require("express-rate-limit");
 
 app.use(express.json() )
 
-//
+
+// Rate limiter
+const limiter = rateLimit({
+    windowMs: 100 * 60 * 100, // 10 minutes
+    max: 100, // 100 requests max every 10 minutes
+    message:"You are sending too many requests. Please try again later."
+})
+
 
 // encoding
-app.post('/encode', (req, res) => {
+app.post('/encode', limiter, (req, res) => {
     
 
     const { input } = req.body;
@@ -28,11 +34,9 @@ app.post('/encode', (req, res) => {
     });
 });
 
-//
-
 
 // decoding
-app.post('/decode', (req, res) => {
+app.post('/decode', limiter, (req, res) => {
 
     const { input } = req.body;
 
@@ -55,3 +59,8 @@ app.post('/decode', (req, res) => {
 
 // Listen on port
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+
+
+app.get('/', limiter, (req, res) => {
+  res.sendFile('/home/runner/api/index.html'),  (req, res)
+});
