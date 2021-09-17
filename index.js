@@ -14,11 +14,11 @@ const limiter = rateLimit({
 })
 
 
-// encoding
-app.post('/encode', limiter, (req, res) => {
+// encoding through URI
+app.post('/encode/:input', limiter, (req, res) => {
     
 
-    const { input } = req.body;
+    const { input } = req.params;
 
     // encoding lets
   let data =  `${input}`;
@@ -35,10 +35,10 @@ app.post('/encode', limiter, (req, res) => {
 });
 
 
-// decoding
-app.post('/decode', limiter, (req, res) => {
+// decoding through URI
+app.post('/decode/:input', limiter, (req, res) => {
 
-    const { input } = req.body;
+    const { input } = req.params;
 
     // decoding lets
 
